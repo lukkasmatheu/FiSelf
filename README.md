@@ -28,3 +28,136 @@ a organizar seus vendar e prestações de serviço, com o FiSelf voce podera
 
 [Draw.io](https://drive.google.com/file/d/10q1JqEQq9yh8QMegOIz_rHkLlQ0xwYgr/view?usp=drive_link)
 
+ou Implementação de um no-sql
+
+USUARIO
+```json
+{
+  "id_usuario": "string",
+  "nome": "string",
+  "documento": "string",
+  "data_nascimento": "string (LocalDate)",
+  "email": "string",
+  "telefone": "string",
+  "usuario_credencial": {
+    "senha": "string",
+    "tentativas_login": "integer",
+    "ultima_tentativa": "string (LocalDateTime)"
+  },
+  "data_criacao": "string (LocalDateTime)",
+  "data_ultima_atualizacao": "string (LocalDateTime)",
+  "status": "string"
+}
+
+```
+
+Empresa
+```json
+{
+  "id_empresa": "string",
+  "cnpj": "string",
+  "nome_fantasia": "string",
+  "data_contrato": "string (LocalDate)",
+  "contrato": "string (link para documento)",
+  "endereco": {
+    "logradouro": "string",
+    "numero": "string",
+    "complemento": "string",
+    "bairro": "string",
+    "cidade": "string",
+    "estado": "string",
+    "cep": "string"
+  },
+  "contatos": [
+    {
+      "nome": "string",
+      "email": "string",
+      "telefone": "string",
+      "cargo": "string"
+    }
+  ],
+  "status": "string"
+}
+
+```
+
+Produto
+```json
+{
+  "id_produto": "string",
+  "data_criacao": "string (LocalDate)",
+  "categoria": ["string"],
+  "nome_produto": "string",
+  "descricao": "string",
+  "custo": "decimal",
+  "preco_venda": "decimal",
+  "validade": "string (LocalDate)",
+  "status": "string",
+  "fornecedor": {
+    "id_fornecedor": "string",
+    "nome": "string",
+    "cnpj": "string",
+    "contato": "string"
+  },
+  "estoque": {
+    "quantidade": "integer",
+    "unidade": "string"
+  }
+}
+
+```
+Venda
+```json
+{
+  "id_venda": "string",
+  "id_produto": "string",
+  "data_venda": "string (LocalDate)",
+  "quantidade": "integer",
+  "valor_total": "decimal",
+  "nota_fiscal": "string",
+  "id_empresa": "string",
+  "cliente": {
+    "nome": "string",
+    "documento": "string"
+  },
+  "metodo_pagamento": "string",
+  "status": "string"
+}
+
+```
+Serviço Prestado
+```json
+{
+  "id_servico": "string",
+  "data_prestacao": "string (LocalDate)",
+  "empresa": {
+    "id_empresa": "string",
+    "nome_fantasia": "string"
+  },
+  "cliente": {
+    "nome": "string",
+    "documento": "string",
+    "endereco": "string"
+  },
+  "tipo_servico": "string",
+  "descricao_servico": "string",
+  "valor_servico": "decimal",
+  "imposto_incluso": "boolean",
+  "desconto": {
+    "valor": "decimal",
+    "tipo": "string"
+  },
+  "nota_fiscal": "string",
+  "status": "string",
+  "observacoes": "string",
+}
+
+```
+
+
+
+## Planejamento Sprints
+
+|Sprint 1| Sprint 2| Spint|
+|--|--|--|
+|Telas de cadastro de produto/Serviço e dashboard|Tela de produtos e registro de venda| Integração com backend banco de dados|
