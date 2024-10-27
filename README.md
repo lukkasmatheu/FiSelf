@@ -4,8 +4,7 @@
 - [Banco de dados](https://github.com/lukkasmatheu/FiSelf/edit/main/README.md#banco-de-dados)
 - [Planejamento sprint](https://github.com/lukkasmatheu/FiSelf/edit/main/README.md#planejamento-sprints)
 ## Sobre o app
-O aplicativo FiSelf tem como objetivo auxiliar o empresario autonomo 
-a organizar seus vendar e prestações de serviço, com o FiSelf voce podera 
+FiSelf é um aplicativo voltado para apoiar empresários autônomos na gestão eficiente de suas vendas e prestação de serviços. A plataforma oferece uma solução completa para organizar produtos, registrar vendas, controlar serviços prestados, e avaliar o desempenho financeiro de forma prática e centralizada.
 - [ ] cadastrar produtos
 - [ ] listas seus produtos
 - [ ] realizar registro venda
