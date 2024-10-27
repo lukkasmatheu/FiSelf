@@ -158,6 +158,6 @@ Serviço Prestado
 
 ## Planejamento Sprints
 
-|Sprint 1| Sprint 2| Spint|
-|--|--|--|
-|Telas de cadastro de produto/Serviço e dashboard|Tela de produtos e registro de venda| Integração com backend banco de dados|
+|Sprint 1| Sprint 2| Sprint 3| Sprint 4|
+|--|--|--|--|
+|Telas de cadastro de produto/Serviço e dashboard|Tela de produtos e registro de venda| Integração com backend banco de dados|Ajustes finais e lançamento do app|
