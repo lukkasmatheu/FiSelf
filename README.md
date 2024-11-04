@@ -3,6 +3,7 @@
 - [Prototipo](https://github.com/lukkasmatheu/FiSelf/edit/main/README.md#prot%C3%B3tipos-figma)
 - [Banco de dados](https://github.com/lukkasmatheu/FiSelf/edit/main/README.md#banco-de-dados)
 - [Planejamento sprint](https://github.com/lukkasmatheu/FiSelf/edit/main/README.md#planejamento-sprints)
+- [Executando o projeto](https://github.com/lukkasmatheu/FiSelf/edit/main/README.md#como-executar)
 ## Sobre o app
 FiSelf é um aplicativo voltado para apoiar empresários autônomos na gestão eficiente de suas vendas e prestação de serviços. A plataforma oferece uma solução completa para organizar produtos, registrar vendas, controlar serviços prestados, e avaliar o desempenho financeiro de forma prática e centralizada.
 - [ ] cadastrar produtos
@@ -154,10 +155,28 @@ Serviço Prestado
 
 ```
 
-
-
 ## Planejamento Sprints
 
 |Sprint 1| Sprint 2| Sprint 3| Sprint 4|
 |--|--|--|--|
 |Telas de cadastro de produto/Serviço e dashboard|Tela de produtos e registro de venda| Integração com backend banco de dados|Ajustes finais e lançamento do app|
+
+
+## Como executar 
+
+Para executar a aplicação é necessario ter instalado as seguintes dependencias
+
+1. node-> v22 ou superior 
+2. git 
+3. IDE de sua preferencia
+
+Realize a instalação das bibliotecas do projeto com
+```bash
+npm install
+```
+Para rodar o projeto execute
+```
+npx expo start
+```
+
+
