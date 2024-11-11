@@ -23,7 +23,7 @@ export default function Register() {
       </View>
       <View style={styles.buttons}> 
         <Button width={180} title='login' onPress={()=>navigate('login')}/>
-        <Button width={180} color="green"  title='Salvar Cadastro' onPress={()=>navigate('register')}/>
+        <Button width={180} color="green"  title='Salvar Cadastro' onPress={()=>navigate('(_auth)/dashboard')}/>
       </View>
     </View>
   );
