@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Image, Text, View, FlatList } from 'react-native';
 import produtos from '../../mocks/produtos.json';
-
+import { Logo } from '../../components/Logo';
 interface ProductsProps{ 
   id: number;
   nome: string;
@@ -30,11 +30,8 @@ export default function Products() {
 
   return (
     <View style={styles.container}> 
-    {/* TODO componetizar Logo [criar logo pequena a esquerda/logo central/logo roda pé] */}
-      <View style={styles.logo}> 
-        <Text style={styles.firtText}>Fi</Text>
-        <Text style={styles.secondText}>Self</Text>
-      </View>
+      <Logo />
+      <Text style={styles.category}>Informatica</Text>
       <FlatList
       data={produtosData}
       renderItem={renderItem}
@@ -52,27 +49,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 16,
   },
-  logo: {
-    marginBottom:80,
-    backgroundColor: '#fff',
-    flexDirection:'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  firtText:{
-    // fontFamily:'sans serif',
-    fontSize:40,
-    color:'blue'
-  },
-  secondText:{
-    // fontFamily:'sans serif',
-    fontSize:40,
-    fontWeight:"bold"
-  },
-  list: {
+  list:{
     paddingHorizontal: 16,
   },
   card: {
@@ -96,6 +75,11 @@ const styles = StyleSheet.create({
     height: 80,
     marginBottom: 8,
     borderRadius: 10,
+  },
+  category: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333',
   },
   name: {
     fontSize: 16,
