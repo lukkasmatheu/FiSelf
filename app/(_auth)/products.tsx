@@ -1,47 +1,53 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Image, Text, View, FlatList } from 'react-native';
-import produtos from '../../mocks/produtos.json';
+import { StyleSheet, Image, Text, View, ScrollView } from 'react-native';
+import categorias from '../../mocks/produtos.json';
 import { Logo } from '../../components/Logo';
-interface ProductsProps{ 
+
+interface Product {
   id: number;
   nome: string;
   preco: number;
   imagem: string;
 }
 
+interface Category {
+  categoria: string;
+  produtos: Product[];
+}
+
 export default function Products() {
+  const [produtosData, setProdutosData] = useState<Category[]>([]);
 
-  const [produtosData, setProdutosData] = useState<ProductsProps[]>([]);
-
-  // Carregar produtos do JSON ao montar o componente
   useEffect(() => {
-    console.log(produtos)
-    setProdutosData(produtos);
+    setProdutosData(categorias);
   }, []);
 
-  const renderItem = ({item}:any) => (
-    <View style={styles.card}>
-      <Image source={{ uri: item.imagem }} style={styles.image} />
-      <Text style={styles.name}>{item.nome}</Text>
-      <Text style={styles.price}>R$ {item.preco?.toFixed(2)}</Text>
+  const renderCategory = (category: Category) => (
+    <View key={category.categoria} style={styles.categoryContainer}>
+      <Text style={styles.category}>{category.categoria}</Text>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.list}
+      >
+        {category.produtos.map((product) => (
+          <View key={product.id} style={styles.card}>
+            <Image source={{ uri: product.imagem }} style={styles.image} />
+            <Text style={styles.name}>{product.nome}</Text>
+            <Text style={styles.price}>R$ {product.preco?.toFixed(2)}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 
   return (
-    <View style={styles.container}> 
+    <ScrollView style={styles.container}>
       <Logo />
-      <Text style={styles.category}>Informatica</Text>
-      <FlatList
-      data={produtosData}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id.toString()}
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={styles.list}
-      />
+      {produtosData.map((category) => renderCategory(category))}
       <StatusBar style="auto" />
-    </View>
+    </ScrollView>
   );
 }
 
@@ -51,15 +57,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 16,
   },
-  list:{
+  list: {
     paddingHorizontal: 16,
+  },
+  categoryContainer: {
+    marginBottom: 24, // Espaço entre as categorias
   },
   card: {
     width: 150,
     height: 150,
     backgroundColor: '#fff',
-    borderWidth:2,
-    borderColor:"gray",
+    borderWidth: 2,
+    borderColor: "gray",
     borderRadius: 10,
     marginRight: 16,
     padding: 10,
@@ -77,9 +86,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   category: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
+    marginBottom: 8,
+    marginLeft: 16,
   },
   name: {
     fontSize: 16,
