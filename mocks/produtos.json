@@ -1,33 +1,42 @@
 [
-    {
-      "id": 1,
-      "nome": "Mini Impressora",
-      "preco": 29.99,
-      "imagem": "https://down-br.img.susercontent.com/file/br-11134207-7r98o-lz28x9q1xm6t8a.webp"
-    },
-    {
-      "id": 2,
-      "nome": "Teclado",
-      "preco": 49.99,
-      "imagem": "https://down-br.img.susercontent.com/file/sg-11134301-7req0-m1rf58xfugi778.webp"
-    },
-    {
-      "id": 3,
-      "nome": "Moedor Eletrico",
-      "preco": 19.99,
-      "imagem": "https://down-br.img.susercontent.com/file/br-11134207-7r98o-lucjzys7yufod1.webp"
-    },
-    {
-      "id": 4,
-      "nome": "Air Frier ",
-      "preco": 99.99,
-      "imagem": "https://down-br.img.susercontent.com/file/sg-11134201-7rbku-lnvmozdfjqpxcf@resize_w450_nl.webp"
-    },
-    {
-      "id": 5,
-      "nome": "Espelho",
-      "preco": 39.99,
-      "imagem": "https://down-br.img.susercontent.com/file/br-11134207-7r98o-lqca9detkq3j9b.webp"
-    }
-  ]
-  
+  {
+    "categoria": "informatica",
+    "produtos": [
+      {
+        "id": 1,
+        "nome": "Mini Impressora",
+        "preco": 29.99,
+        "imagem": "https://down-br.img.susercontent.com/file/br-11134207-7r98o-lz28x9q1xm6t8a.webp"
+      },
+      {
+        "id": 2,
+        "nome": "Teclado",
+        "preco": 49.99,
+        "imagem": "https://down-br.img.susercontent.com/file/sg-11134301-7req0-m1rf58xfugi778.webp"
+      },
+      {
+        "id": 3,
+        "nome": "Moedor Eletrico",
+        "preco": 19.99,
+        "imagem": "https://down-br.img.susercontent.com/file/br-11134207-7r98o-lucjzys7yufod1.webp"
+      },
+      {
+        "id": 4,
+        "nome": "Air Frier",
+        "preco": 99.99,
+        "imagem": "https://down-br.img.susercontent.com/file/sg-11134201-7rbku-lnvmozdfjqpxcf@resize_w450_nl.webp"
+      }
+    ]
+  },
+  {
+    "categoria": "beleza",
+    "produtos": [
+      {
+        "id": 5,
+        "nome": "Espelho",
+        "preco": 39.99,
+        "imagem": "https://down-br.img.susercontent.com/file/br-11134207-7r98o-lqca9detkq3j9b.webp"
+      }
+    ]
+  }
+]

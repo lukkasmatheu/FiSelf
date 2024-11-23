@@ -13,14 +13,14 @@ export default function Layout() {
           }}
         />
         <Drawer.Screen
-          name="login" // This is the name of the page and must match the url from root
+          name="login"
           options={{
             drawerLabel: 'Login',
             title: 'Login',
           }}
         />
         <Drawer.Screen
-          name="register" // This is the name of the page and must match the url from root
+          name="register"
           options={{
             drawerLabel: 'Cadastro',
             title: 'Cadastro',
