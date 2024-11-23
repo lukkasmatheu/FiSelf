@@ -5,23 +5,23 @@ import { StyleSheet, ScrollView, Text, View } from 'react-native';
 export interface MenuItem{
     icon?:any;
     label:string;
+    selected?:boolean;
 }
 
 export interface MenuProps{
     menu:MenuItem[];
 }
 
-
-const Menu = ({menu}:MenuProps) => (
+export const Menu = ({menu}:MenuProps) => (
     <View style={styles.menu}>
         {menu.map((item, index) => (
-        <MenuItem key={index} icon={item.icon} label={item.label} />
+        <MenuItem selected={item.selected} key={index} icon={item.icon} label={item.label} />
         ))}
     </View>
 );
   
 const MenuItem = (menuItem:MenuItem) => (
-    <View style={styles.menuItem}>
+    <View style={[styles.menuItem, menuItem.selected && {borderBottomWidth:1}]}>
         <Ionicons name={menuItem.icon} size={24} color="black" />
         <Text style={styles.menuItemText}>{menuItem.label}</Text>
     </View>
@@ -33,8 +33,10 @@ menu: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginVertical: 16,
+    
 },
 menuItem: {
+    borderColor: 'gray',
     alignItems: 'center',
 },
 menuItemText: {
