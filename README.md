@@ -8,12 +8,11 @@
 FiSelf é um aplicativo voltado para apoiar empresários autônomos na gestão eficiente de suas vendas e prestação de serviços. A plataforma oferece uma solução completa para organizar produtos, registrar vendas, controlar serviços prestados, e avaliar o desempenho financeiro de forma prática e centralizada.
 - [ ] cadastrar produtos
 - [ ] listas seus produtos
-- [ ] realizar registro venda
-- [ ] realizar registro de serviço
-- [ ] ter uma balanço entre custo de produção/vendas de seus produtos.
+- [ ] ter uma balanço entre custo de produção/vendas de seus produtos (Dashboard de produtos).
        
 **Futuramente estaremos realizando a implementação das seguintes funcionalidades**
-
+- [ ] realizar registro venda
+- [ ] realizar registro de serviço
 - [ ] Geração de notas fiscais
 - [ ] Geração de relatorios financeiros
 - [ ] Extrato de responsabilidades fiscais.
