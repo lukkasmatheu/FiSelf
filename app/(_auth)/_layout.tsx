@@ -3,7 +3,6 @@ import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function _layout() {
-
   return (
     <Tabs>
       <Tabs.Screen
@@ -11,29 +10,31 @@ export default function _layout() {
         options={{
           headerShown: false,
           title: "Dashboard",
-          tabBarIcon:()=>(
-            <Ionicons size={28} name={"analytics-outline"} />
-          )
+          tabBarIcon: () => <Ionicons size={28} name={"analytics-outline"} />,
         }}
       />
       <Tabs.Screen
-        name="products"
+        name="(product)/products"
         options={{
           headerShown: false,
           title: "Produtos",
-          tabBarIcon:()=>(
-            <Ionicons size={28} name={"bag-handle-outline"} />
-          )
+          tabBarIcon: () => <Ionicons size={28} name={"bag-handle-outline"} />,
         }}
       />
       <Tabs.Screen
-        name="cad"
+        name="(product)/productCreate"
         options={{
           headerShown: false,
           title: "Cadastro",
-          tabBarIcon:()=>(
-            <Ionicons size={28} name={"bag-add-outline"} />
-          )
+          tabBarIcon: () => <Ionicons size={28} name={"bag-outline"} />,
+        }}
+      /> 
+      <Tabs.Screen
+        name="(product)/(register)"
+        options={{
+          headerShown: false,
+          title: "Venda",
+          tabBarIcon: () => <Ionicons size={28} name={"bag-add-outline"} />,
         }}
       />
     </Tabs>

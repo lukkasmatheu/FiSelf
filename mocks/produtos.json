@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "informatica",
+    "categoria": "Informatica",
     "produtos": [
       {
         "id": 1,
@@ -29,7 +29,7 @@
     ]
   },
   {
-    "categoria": "beleza",
+    "categoria": "Beleza",
     "produtos": [
       {
         "id": 5,
