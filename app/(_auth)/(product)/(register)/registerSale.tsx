@@ -8,6 +8,7 @@ import { Button } from "../../../../components/Button";
 
 
  const RegisterSale = () => {
+
   const [selectValue,setSelectValue] = useState("");
   return (
     <View style={styles.container}>

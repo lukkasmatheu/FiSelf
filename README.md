@@ -6,12 +6,12 @@
 - [Executando o projeto](https://github.com/lukkasmatheu/FiSelf/edit/main/README.md#como-executar)
 ## Sobre o app
 FiSelf é um aplicativo voltado para apoiar empresários autônomos na gestão eficiente de suas vendas e prestação de serviços. A plataforma oferece uma solução completa para organizar produtos, registrar vendas, controlar serviços prestados, e avaliar o desempenho financeiro de forma prática e centralizada.
-- [ ] cadastrar produtos
-- [ ] listas seus produtos
-- [ ] ter uma balanço entre custo de produção/vendas de seus produtos (Dashboard de produtos).
-       
+- [x] cadastrar produtos
+- [x] listas seus produtos
+- [x]  ter uma balanço entre custo de produção/vendas de seus produtos (Dashboard de produtos).
+- [x] realizar registro venda
+
 **Futuramente estaremos realizando a implementação das seguintes funcionalidades**
-- [ ] realizar registro venda
 - [ ] realizar registro de serviço
 - [ ] Geração de notas fiscais
 - [ ] Geração de relatorios financeiros
@@ -156,10 +156,18 @@ Serviço Prestado
 
 ## Planejamento Sprints
 
-|Sprint 1| Sprint 2| Sprint 3| Sprint 4|
-|--|--|--|--|
-|Telas de cadastro de produto/Serviço e dashboard|Tela de produtos e registro de venda| Integração com backend banco de dados|Ajustes finais e lançamento do app|
+|Sprint 1| Sprint 2|
+|--|--|
+|Telas de cadastro de produto e dashboard (Feito)|Tela de produtos e registro de venda (Feito)|
 
+
+|Sprint 3| Sprint 4|
+|--|--|
+|Criação de backend|Integração com Backend/frontend|
+|Criar integração com firebase para login| Adicionar Axios para relização de chamadas|
+|Criar conexao com firestore| Adicionar zustand para persistencia local de dados|
+|Mapear Objetos a serem persistidos(Produtos/Vendas/clientes)|Criar Logica de acesso para rotas autenticadas|
+|Possivel Tarefa -> Deploy de backend no Render ou ec2-aws| Possivel tarefa -> Criar conexão sse para notificações (vencimento de produto/registro de vendas)|
 
 ## Como executar 
 

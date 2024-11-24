@@ -31,13 +31,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  logo: {
-    marginBottom: 80,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   buttons: {
     height: 120,
     flexDirection: "column",
