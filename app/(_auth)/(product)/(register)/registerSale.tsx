@@ -8,7 +8,8 @@ import { Button } from "../../../../components/Button";
 
 
  const RegisterSale = () => {
-  const [selectValue,setSelectValue] = useState();
+
+  const [selectValue,setSelectValue] = useState("");
   return (
     <View style={styles.container}>
 
@@ -19,7 +20,7 @@ import { Button } from "../../../../components/Button";
       />
       <Logo/>
       <View style={styles.inputs}>
-        <Select label={"Categoria"} selectedValue={selectValue} setSelectValue={setSelectValue} options={[{'value':'Eletrodomesticos'},{'value':'Informatica'},{'value':'Beleza'}]} />
+        <Select label={"Categoria"} selectedValue={selectValue} setSelectValue={(e)=>setSelectValue(e.value)} options={[{'value':'Eletrodomesticos'},{'value':'Informatica'},{'value':'Beleza'}]} />
         <Input label="Produto" />
         <Input label="Quantidade" />
         <Input label="Email Clinte" textContentType={"emailAddress"} />
