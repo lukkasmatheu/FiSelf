@@ -24,20 +24,10 @@ export default function Dashboard() {
   );
 }
 
-<<<<<<< HEAD
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
     padding: 16,
-=======
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding:16
->>>>>>> 632f2c503b7fc40d3301ef0c5b2e16c7b6f2ebd4
   },
 });
