@@ -10,7 +10,9 @@ export default function _layout() {
         options={{
           headerShown: false,
           title: "Dashboard",
-          tabBarIcon: () => <Ionicons size={28} name={"analytics-outline"} />,
+          tabBarIcon:()=>(
+            <Ionicons size={28} name={"analytics-outline"} />
+          )
         }}
       />
       <Tabs.Screen

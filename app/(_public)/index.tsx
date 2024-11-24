@@ -38,13 +38,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 632f2c503b7fc40d3301ef0c5b2e16c7b6f2ebd4
   buttons: {
     height: 120,
     flexDirection: "column",
     alignItems: "flex-end",
     justifyContent: "space-evenly",
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 632f2c503b7fc40d3301ef0c5b2e16c7b6f2ebd4
 });
 
 
