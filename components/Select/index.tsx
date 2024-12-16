@@ -49,7 +49,10 @@ export function Select({
             <TouchableOpacity
               style={{ margin: 7 }}
               key={index}
-              onPress={() => setSelectValue(option)}
+              onPress={() => {
+                setOpenList(false);
+                setSelectValue(option);
+              }}
             >
               <Text>{option.value}</Text>
             </TouchableOpacity>
