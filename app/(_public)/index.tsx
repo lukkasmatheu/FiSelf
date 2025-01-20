@@ -12,15 +12,15 @@ const Welcome = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Logo />
-      <Text>Seja bem vindo ao seu app pessoal de finanças</Text>
-      <View style={styles.buttons}>
-        <Button title="Login" onPress={() => navigate("login")} />
-        <Button title="Cadastro" onPress={() => navigate("register")} />
+      <View style={styles.container}>
+        <Logo />
+        <Text>Seja bem vindo ao seu app pessoal de finanças</Text>
+        <View style={styles.buttons}>
+          <Button title="Login" onPress={() => navigate("login")} />
+          <Button title="Cadastro" onPress={() => navigate("register")} />
+        </View>
+        <StatusBar style="auto" />
       </View>
-      <StatusBar style="auto" />
-    </View>
   );
 }
 

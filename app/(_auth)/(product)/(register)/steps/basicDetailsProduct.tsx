@@ -11,7 +11,7 @@ interface ProducsProps {
 export const BasicDetailsProduct = ({ product, setProduct }: ProducsProps) => (
   <View style={styles.container}>
     <Input
-      label="Nome do produto"
+      label="Nome do produto *"
       placeholder="Nome do Produto"
       textContentType={"emailAddress"}
       value={product.nome}
@@ -19,7 +19,7 @@ export const BasicDetailsProduct = ({ product, setProduct }: ProducsProps) => (
     />
 
     <Input
-      label="Preço de Compra"
+      label="Custo"
       placeholder="Preço"
       keyboardType="numeric"
       value={product.precoVenda}
@@ -35,7 +35,7 @@ export const BasicDetailsProduct = ({ product, setProduct }: ProducsProps) => (
     />
 
     <Input
-      label="Quantidade"
+      label="Quantidade*"
       placeholder="Preço"
       keyboardType="numeric"
       value={product.quantidade}

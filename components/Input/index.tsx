@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   boxInput: {
     width: "85%",
     borderWidth: 1,
+    borderRadius:8
   },
   label: {
     alignSelf: "flex-start",

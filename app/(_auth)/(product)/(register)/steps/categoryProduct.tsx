@@ -14,6 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Product } from "../registerProduct";
 import { Select } from "../../../../../components/Select";
 import { Button } from "../../../../../components/Button";
+import { MediaType } from "expo-image-picker";
 
 
 interface ProducsProps {
@@ -35,6 +36,7 @@ export const CategoryProduct = ({ product, setProduct }: ProducsProps) => {
     { value: "Limpeza" },
     { value: "Brinquedo" },
   ]);
+  const TypeImage = 'image' as MediaType;
 
   const takePhoto = async () => {
     let permissionResult = await ImagePicker.requestCameraPermissionsAsync();
@@ -66,13 +68,13 @@ export const CategoryProduct = ({ product, setProduct }: ProducsProps) => {
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: TypeImage,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
     });
 
-    if (!result.cancelled) {
+    if (!result.canceled) {
       setProduct({ ...product, imagem: result.uri });
     }
   };
@@ -80,7 +82,7 @@ export const CategoryProduct = ({ product, setProduct }: ProducsProps) => {
   return (
     <View style={styles.container}>
       <Select
-        label="Categoria"
+        label="Categoria*"
         setSelectValue={(e) => setProduct({ ...product, categoria: e.value })}
         options={categorias}
         selectedValue={product["categoria"]}

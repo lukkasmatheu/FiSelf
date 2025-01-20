@@ -54,7 +54,7 @@ const RegisterProduct = () => {
       product.categoria === "" ||
       product.imagem === ""
     ) {
-      Alert.alert("Erro", "Por favor, preencha todos os campos.");
+      Alert.alert("Erro", "Por favor, preencha todos os campos Obrigatorios *.");
       return;
     }
 
@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 15,
     width: "100%",
+    marginLeft:15,
     flexDirection: "row",
     justifyContent: "space-around",
   },
