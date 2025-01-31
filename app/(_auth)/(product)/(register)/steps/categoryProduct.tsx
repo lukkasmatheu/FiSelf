@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -14,6 +14,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { Product } from "../registerProduct";
 import { Select } from "../../../../../components/Select";
 import { Button } from "../../../../../components/Button";
+import { Input } from "../../../../../components/Input";
+import useCategoryStore from "../../../../../states/useCategory";
 
 
 interface ProducsProps {
@@ -26,15 +28,21 @@ interface Category {
 }
 
 export const CategoryProduct = ({ product, setProduct }: ProducsProps) => {
+
+  const { categories, addCategory, loadCategories,clearCategories } = useCategoryStore();
+  const [options,setOptions] = useState<Category[]>([])
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isLinkVisible, setLinkVisible] = useState(false);
   const [newCategory, setNewCategory] = useState("");
-  const [categorias, setCategorias] = useState<Category[]>([
-    { value: "Informatica" },
-    { value: "Beleza" },
-    { value: "Eletrodomesticos" },
-    { value: "Limpeza" },
-    { value: "Brinquedo" },
-  ]);
+
+  useEffect(()  => {
+    loadCategories();
+  },[]);
+
+  useEffect(()  => {
+    if(categories.length > 0)
+      setOptions(categories.sort().map(categoria => ({'value':categoria})))
+  },[categories]);
 
   const takePhoto = async () => {
     let permissionResult = await ImagePicker.requestCameraPermissionsAsync();
@@ -45,35 +53,39 @@ export const CategoryProduct = ({ product, setProduct }: ProducsProps) => {
     }
 
     let result = await ImagePicker.launchCameraAsync({
+      mediaTypes:['images'],
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
     });
 
-    if (!result.cancelled) {
-      setProduct({ ...product, imagem: result.uri });
+    if (!result.canceled) {
+      setProduct({ ...product, imagem: result.assets[0].uri });
     }
   };
-  const addCategory = () => {
+
+  const handleAddCategory = () => {
     if (newCategory.trim() === "") {
       Alert.alert("Erro", "O nome da categoria não pode ser vazio.");
       return;
     }
-    setCategorias([...categorias, { value: newCategory.trim() }]);
+    if (!categories.includes(newCategory)) {
+      addCategory(newCategory);
+    }
     setNewCategory("");
     setModalVisible(false);
   };
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes:['images'],
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
     });
 
-    if (!result.cancelled) {
-      setProduct({ ...product, imagem: result.uri });
+    if (!result.canceled) {
+      setProduct({ ...product, imagem: result.assets[0].uri });
     }
   };
 
@@ -82,7 +94,7 @@ export const CategoryProduct = ({ product, setProduct }: ProducsProps) => {
       <Select
         label="Categoria"
         setSelectValue={(e) => setProduct({ ...product, categoria: e.value })}
-        options={categorias}
+        options={options}
         selectedValue={product["categoria"]}
       />
 
@@ -94,7 +106,7 @@ export const CategoryProduct = ({ product, setProduct }: ProducsProps) => {
         <View style={styles.imageContainer}>
           <View>
             {product.imagem ? (
-              <Image source={{ uri: product.imagem }} />
+              <Image source={{ uri: product.imagem }} style={styles.image} />
             ) : (
               <View style={styles.withoutImage}>
                 <Text>Nenhuma imagem selecionada</Text>
@@ -111,35 +123,51 @@ export const CategoryProduct = ({ product, setProduct }: ProducsProps) => {
               <Text>Tirar Foto</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonImage} onPress={takePhoto}>
+            <TouchableOpacity style={styles.buttonImage} onPress={() => setLinkVisible(!isLinkVisible)}>
               <Ionicons name="link-outline" size={35} />
               <Text>URL</Text>
             </TouchableOpacity>
+           
           </View>
+          {isLinkVisible && 
+            <Input
+            label="URL imagem"
+              placeholder="URL da imagem"
+              value={product.imagem}
+              onEndEditing={()=>setLinkVisible(!isLinkVisible)}
+              onChangeText={(text) => setProduct({ ...product, imagem: text})}
+            />}
         </View>
       </View>
 
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={isModalVisible}
-        style={styles.modalOverlay}
         onRequestClose={() => setModalVisible(false)}
       >
-        <View style={styles.modalContainer}>
-          <View>
-            <Text> Criar Nova Categoria </Text>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>Criar Nova Categoria</Text>
             <TextInput
               placeholder="Nome da Categoria"
               value={newCategory}
               onChangeText={(text) => setNewCategory(text)}
+              style={styles.modalInput}
             />
-            <Button title="Salvar Categoria" onPress={addCategory} />
+            <View style={styles.modalButton}>
+            <Button 
+            title="Salvar Categoria" 
+            color="green"
+            onPress={handleAddCategory}
+             />
+
             <Button
               title="Cancelar"
               color="red"
               onPress={() => setModalVisible(false)}
             />
+            </View>
           </View>
         </View>
       </Modal>
@@ -159,6 +187,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#3d3d3d3d",
+  },
+  image: {
+    width: "100%",
+    height: 200,
+    marginBottom: 8,
+    borderRadius: 10,
   },
   select: {
     fontSize: 16,
@@ -193,15 +227,33 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    backgroundColor: "rgba(0, 0, 0, 0.6)", // Filtro de fundo escurecido
   },
   modalContainer: {
-    width: "80%", // Largura da modal ajustável
+    width: "80%", // Largura ajustável
     backgroundColor: "#fff", // Cor de fundo da modal
+    padding: 20,
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  modalButton: {
     padding: 20,
-    marginHorizontal: 20,
-    borderRadius: 10,
+    gap:15,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalInput: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "#ccc",
+    marginBottom: 10,
   },
 });

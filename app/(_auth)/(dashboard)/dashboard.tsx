@@ -17,7 +17,7 @@ export default function Dashboard() {
       <Logo />
       <TotalBalance amount={totalBalance.amount} change={totalBalance.change} />
       <CardStatics cardStatics={balanceCards} />
-      <Menu menu={menuItems} />
+      <Menu menu={[menuItems[0]]} />
       <Transactions transactions={events} />
       <StatusBar style="auto" />
     </View>

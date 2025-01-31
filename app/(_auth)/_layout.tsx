@@ -34,6 +34,7 @@ export default function _layout() {
       <Tabs.Screen
         name="(product)/(register)"
         options={{
+          href:null,
           headerShown: false,
           title: "Venda",
           tabBarIcon: () => <Ionicons size={28} name={"bag-add-outline"} />,

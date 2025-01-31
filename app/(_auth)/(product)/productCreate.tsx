@@ -4,18 +4,24 @@ import { Logo } from "../../../components/Logo";
 import { useRouter } from "expo-router";
 
 const ProductCreate = () => {
-    const router = useRouter();
-    const navigate = (route: string) => {
-        router.push(route);
-      };
+  const router = useRouter();
+  const navigate = (route: string) => {
+    router.push(route);
+  };
   return (
     <View style={styles.cardsContainer}>
       <Logo />
-      <TouchableOpacity style={[styles.card]} onPress={()=>navigate("./registerProduct")}>
+      <TouchableOpacity
+        style={[styles.card]}
+        onPress={() => navigate("./registerProduct")}
+      >
         <Ionicons name="bag-add-outline" size={25} color="white" />
         <Text style={styles.contentText}>Cadastrar Produto</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[styles.card]} onPress={()=>navigate("./registerSale")}>
+      <TouchableOpacity
+        style={[styles.card]}
+        onPress={() => navigate("./registerSale")}
+      >
         <Ionicons name="bag-add-outline" size={25} color="white" />
         <Text style={styles.contentText}>Cadastrar Venda</Text>
       </TouchableOpacity>
@@ -27,14 +33,14 @@ const styles = StyleSheet.create({
   cardsContainer: {
     flex: 1,
     alignItems: "center",
-    gap:15,
-    backgroundColor:"#fff"
+    gap: 15,
+    backgroundColor: "#fff",
   },
   card: {
     backgroundColor: "gray",
     width: 250,
-    alignItems:'center',
-    justifyContent:'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 16,
     borderRadius: 10,
     marginRight: 8,
@@ -43,7 +49,7 @@ const styles = StyleSheet.create({
     color: "#ffff",
     fontSize: 14,
     fontFamily: "OpenSans",
-    textAlign:'center',
+    textAlign: "center",
   },
   balanceCardValue: {
     color: "#fff",

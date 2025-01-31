@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    
-    "scheme": "fislf"
-    ,
+    "scheme": "fislf",
     "ios": {
       "supportsTablet": true
     },
@@ -21,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.FiSelf"
     },
     "web": {
       "favicon": "./assets/favicon.png",

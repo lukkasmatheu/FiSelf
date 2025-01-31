@@ -1,0 +1,45 @@
+import axios from "axios";
+import useUser from "../states/useUser";
+
+const API_BASE_URL = "http://10.0.2.2:8080"; 
+
+const api = axios.create({
+  baseURL: API_BASE_URL, 
+});
+
+
+api.interceptors.request.use(
+  async (config) => {
+    const { accessToken,refreshToken } = useUser.getState();
+
+    if (accessToken && !config.url?.includes("/v1/user")) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+      if (refreshToken) {
+        config.headers["x-refresh-token"] = refreshToken;
+      }
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+api.interceptors.response.use(
+  async (response) => {
+    const { setAccessToken,accessToken } = useUser.getState();
+
+    const newAccessToken = response.headers["Bearer"];
+    console.log(response.headers)
+    if (newAccessToken != null && newAccessToken != accessToken) {
+      console.log("Alterando token" + newAccessToken)
+      setAccessToken(newAccessToken);
+    }
+    return response;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+export default api;

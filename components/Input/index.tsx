@@ -19,21 +19,27 @@ export function Input({
   ...rest
 }: InputProps) {
   return (
-    <View style={[styles.boxInput, disable && styles.disable]}>
+    <View style={[styles.contentInput, disable && styles.disable]}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput style={[styles.input, disable && styles.disable]} {...rest} />
+      <View style={[styles.boxInput, disable && styles.disable]}>
+        <TextInput style={[styles.input, disable && styles.disable]} {...rest} />
+      </View>
     </View>
+    
   );
 }
 
 const styles = StyleSheet.create({
-  boxInput: {
+  contentInput: {
     width: "85%",
+  },
+  boxInput: {
+    width: "100%",
+    height:45,
     borderWidth: 1,
   },
   label: {
     alignSelf: "flex-start",
-    marginTop: -15,
     marginLeft: 10,
     width: "auto",
     backgroundColor: "#ffff",
@@ -42,6 +48,7 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     paddingLeft: 10,
+    paddingTop:5,
     borderColor: "none",
     borderWidth: 0,
   },

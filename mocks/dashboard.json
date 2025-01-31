@@ -69,6 +69,30 @@
       "description": "Today, 13:45",
       "amount": "+R$260.00",
       "isPositive": true
+    },
+    {
+      "icon": "arrow-up-outline",
+      "color": "green",
+      "title": "Formatação/Limpeza maquina",
+      "description": "Today, 13:45",
+      "amount": "+R$260.00",
+      "isPositive": true
+    },
+    {
+      "icon": "arrow-up-outline",
+      "color": "green",
+      "title": "Formatação/Limpeza maquina",
+      "description": "Today, 13:45",
+      "amount": "+R$260.00",
+      "isPositive": true
+    },
+    {
+      "icon": "arrow-up-outline",
+      "color": "green",
+      "title": "Formatação/Limpeza maquina",
+      "description": "Today, 13:45",
+      "amount": "+R$260.00",
+      "isPositive": true
     }
   ]
 }
