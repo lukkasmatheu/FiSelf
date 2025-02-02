@@ -153,7 +153,7 @@ Serviço Prestado
 
 
 |Sprint 3| Sprint 4| Sprint 5|
-|--|--|
+|--|--|--|
 |Criação de backend (feito)|Integração com Backend/frontend (feito)| Refatorar telas junto a integração ao backend (Feito)|
 |Criar integração com firebase para login (feito)| Adicionar Axios para relização de chamadas (feito)| Manter Token ativo (sem necessidade de ficar refazendo login) (Feito)|
 |Criar conexao com firestore| Adicionar zustand para persistencia local de dados (feito)| |
