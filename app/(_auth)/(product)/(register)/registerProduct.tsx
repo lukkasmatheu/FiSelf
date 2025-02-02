@@ -6,11 +6,10 @@ import { BasicDetailsProduct } from "./steps/basicDetailsProduct";
 import { CategoryProduct } from "./steps/categoryProduct";
 import { AdvancedeDetailsProduct } from "./steps/advancedeDetailsProduct";
 
-import { Stack, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { Logo } from "../../../../components/Logo";
 import { Button } from "../../../../components/Button";
 import { ProductSchema } from "../../../../schemas/ProductSchema";
-import axios from "axios";
 import useUser from "../../../../states/useUser";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";

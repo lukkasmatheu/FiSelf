@@ -92,7 +92,7 @@ export const CategoryProduct = ({ product, setProduct }: ProducsProps) => {
   return (
     <View style={styles.container}>
       <Select
-        label="Categoria"
+        label="Categoria*"
         setSelectValue={(e) => setProduct({ ...product, categoria: e.value })}
         options={options}
         selectedValue={product["categoria"]}

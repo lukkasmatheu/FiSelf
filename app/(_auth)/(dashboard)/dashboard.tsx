@@ -2,12 +2,11 @@ import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import { Alert, StyleSheet, View, Text, ActivityIndicator } from "react-native";
 import { Logo } from "../../../components/Logo";
-import { TotalBalance, TotalBalanceProps } from "./components/balanceTotal";
+import { TotalBalance } from "./components/balanceTotal";
 import { CardStatics } from "../../../components/Card/cardStatic";
 import { Menu } from "./components/menu";
 import { Transactions } from "./components/transactions";
 
-import dashboardData from "../../../mocks/dashboard.json";
 import { DashboardData, transformFinancialData } from "../../../utils/parsers";
 import api from "../../../api/interceptors";
 

@@ -21,14 +21,7 @@ FiSelf é um aplicativo voltado para apoiar empresários autônomos na gestão e
 ![image](https://github.com/user-attachments/assets/6eb20ccf-a7a8-4dd2-84e0-60f27d825778)
 [figma](https://www.figma.com/design/cM8Xwtt9QVDvB4IDr9Pms2/LUCAS-MATHEUS-DOS-SANTOS's-team-library?node-id=0-1&t=Ckbyu3GBS8ofXBH8-1)
 
-## Banco de dados
-
-
-![fiSelfBd](https://github.com/user-attachments/assets/44cb841b-1fe2-4195-baf9-83d23d0a16d5)
-
-[Draw.io](https://drive.google.com/file/d/10q1JqEQq9yh8QMegOIz_rHkLlQ0xwYgr/view?usp=drive_link)
-
-ou Implementação de um no-sql
+## Banco de dados no-sql
 
 USUARIO
 ```json
@@ -39,11 +32,6 @@ USUARIO
   "data_nascimento": "string (LocalDate)",
   "email": "string",
   "telefone": "string",
-  "usuario_credencial": {
-    "senha": "string",
-    "tentativas_login": "integer",
-    "ultima_tentativa": "string (LocalDateTime)"
-  },
   "data_criacao": "string (LocalDateTime)",
   "data_ultima_atualizacao": "string (LocalDateTime)",
   "status": "string"
@@ -51,6 +39,51 @@ USUARIO
 
 ```
 
+Produto
+```json
+{
+  "id_produto": "string",
+  "data_criacao": "string (LocalDate)",
+  "categoria": ["string"],
+  "nome_produto": "string",
+  "descricao": "string",
+  "custo": "decimal",
+  "preco_venda": "decimal",
+  "validade": "string (LocalDate)",
+  "status": "string",
+  "quantidade?:number",
+  "fornecedor": {
+    "id_fornecedor": "string",
+    "nome": "string",
+    "cnpj": "string",
+    "contato": "string"
+  },
+}
+
+```
+Venda
+```json
+{
+  "id_venda": "string",
+  "id_produto": "string",
+  "data_venda": "string (LocalDate)",
+  "quantidade": "integer",
+  "valor_total": "decimal",
+  "nota_fiscal": "string",  // não implementado ainda
+  "id_empresa": "string",
+  "cliente": {
+    "nome": "string",
+    "documento": "string"
+  },  // não implementado ainda
+  "metodo_pagamento": "string", // não implementado ainda
+  "status": "string"
+}
+
+```
+
+Planejamento de implementação Futura
+
+- adicionar empresa e prestação de serviço
 Empresa
 ```json
 {
@@ -81,50 +114,6 @@ Empresa
 
 ```
 
-Produto
-```json
-{
-  "id_produto": "string",
-  "data_criacao": "string (LocalDate)",
-  "categoria": ["string"],
-  "nome_produto": "string",
-  "descricao": "string",
-  "custo": "decimal",
-  "preco_venda": "decimal",
-  "validade": "string (LocalDate)",
-  "status": "string",
-  "fornecedor": {
-    "id_fornecedor": "string",
-    "nome": "string",
-    "cnpj": "string",
-    "contato": "string"
-  },
-  "estoque": {
-    "quantidade": "integer",
-    "unidade": "string"
-  }
-}
-
-```
-Venda
-```json
-{
-  "id_venda": "string",
-  "id_produto": "string",
-  "data_venda": "string (LocalDate)",
-  "quantidade": "integer",
-  "valor_total": "decimal",
-  "nota_fiscal": "string",
-  "id_empresa": "string",
-  "cliente": {
-    "nome": "string",
-    "documento": "string"
-  },
-  "metodo_pagamento": "string",
-  "status": "string"
-}
-
-```
 Serviço Prestado
 ```json
 {
@@ -154,6 +143,8 @@ Serviço Prestado
 
 ```
 
+
+
 ## Planejamento Sprints
 
 |Sprint 1| Sprint 2|
@@ -161,13 +152,13 @@ Serviço Prestado
 |Telas de cadastro de produto e dashboard (Feito)|Tela de produtos e registro de venda (Feito)|
 
 
-|Sprint 3| Sprint 4|
-|--|--|
-|Criação de backend|Integração com Backend/frontend|
-|Criar integração com firebase para login| Adicionar Axios para relização de chamadas|
-|Criar conexao com firestore| Adicionar zustand para persistencia local de dados|
-|Mapear Objetos a serem persistidos(Produtos/Vendas/clientes)|Criar Logica de acesso para rotas autenticadas|
-|Possivel Tarefa -> Deploy de backend no Render ou ec2-aws| Possivel tarefa -> Criar conexão sse para notificações (vencimento de produto/registro de vendas)|
+|Sprint 3| Sprint 4| Sprint 5|
+|--|--|--|
+|Criação de backend (feito)|Integração com Backend/frontend (feito)| Refatorar telas junto a integração ao backend (Feito)|
+|Criar integração com firebase para login (feito)| Adicionar Axios para relização de chamadas (feito)| Manter Token ativo (sem necessidade de ficar refazendo login) (Feito)|
+|Criar conexao com firestore| Adicionar zustand para persistencia local de dados (feito)| |
+|Mapear Objetos a serem persistidos(Produtos/Vendas/clientes) (feito)|Criar Logica de acesso para rotas autenticadas (feito)||
+|Possivel Tarefa -> Deploy de backend no Render ou ec2-aws (o backend esta sendo utilizado localemnte por enquanto)| Possivel tarefa -> Criar conexão sse para notificações (vencimento de produto/registro de vendas) (Replanejado)||
 
 ## Como executar 
 
@@ -183,7 +174,7 @@ npm install
 ```
 Para rodar o projeto execute
 ```
-npx expo start
+npx expo run:android OR npx expo run:ios
 ```
 
 
