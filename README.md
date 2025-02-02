@@ -21,14 +21,7 @@ FiSelf é um aplicativo voltado para apoiar empresários autônomos na gestão e
 ![image](https://github.com/user-attachments/assets/6eb20ccf-a7a8-4dd2-84e0-60f27d825778)
 [figma](https://www.figma.com/design/cM8Xwtt9QVDvB4IDr9Pms2/LUCAS-MATHEUS-DOS-SANTOS's-team-library?node-id=0-1&t=Ckbyu3GBS8ofXBH8-1)
 
-## Banco de dados
-
-
-![fiSelfBd](https://github.com/user-attachments/assets/44cb841b-1fe2-4195-baf9-83d23d0a16d5)
-
-[Draw.io](https://drive.google.com/file/d/10q1JqEQq9yh8QMegOIz_rHkLlQ0xwYgr/view?usp=drive_link)
-
-ou Implementação de um no-sql
+## Banco de dados no-sql
 
 USUARIO
 ```json
