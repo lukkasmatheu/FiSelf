@@ -10,6 +10,8 @@ interface ButtonProps extends PressableProps {
   title: string;
   color?: string;
   width?: number;
+  radius?: number;
+  gap?: number;
   disable?: boolean;
 }
 
@@ -18,11 +20,13 @@ export function Button({
   color,
   width,
   disabled = false,
+  radius,
+  gap,
   ...rest
 }: ButtonProps) {
   return (
     <Pressable
-      style={[customStyle(color, width).button, disabled && styles.disable]}
+      style={[customStyle(color, width , radius, gap).button, disabled && styles.disable]}
       {...rest}
     >
       <View style={styles.content}>
@@ -32,14 +36,15 @@ export function Button({
   );
 }
 
-const customStyle = (color?: string, width?: number) =>
+const customStyle = (color?: string, width?: number,radius?: number, gap?: number) =>
   StyleSheet.create({
     button: {
       width: width ? width : 200,
       height: 35,
       borderColor: "#354354",
       borderWidth: 1,
-      borderRadius: 15,
+      borderRadius: radius ? radius : 15,
+      gap: gap ? gap : 0,
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: color ? color : "#00000054",

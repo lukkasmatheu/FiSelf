@@ -29,16 +29,18 @@ const BalanceCard = (card: staticsMounth) => (
   <View style={[styles.balanceCard, { backgroundColor: card.color }]}>
     <Text style={styles.balanceCardLabel}>{card.label}</Text>
     <Text style={styles.balanceCardValue}>{card.value}</Text>
-    {card.percentage && <View style={styles.balanceCardRow}>
-      <Ionicons
-        name={
-          card.typeChange === "up" ? "arrow-up-outline" : "arrow-down-outline"
-        }
-        size={16}
-        color="white"
-      />
-      <Text style={styles.balanceCardPercentage}>{card.percentage}</Text>
-    </View>}
+    {card.percentage && (
+      <View style={styles.balanceCardRow}>
+        <Ionicons
+          name={
+            card.typeChange === "up" ? "arrow-up-outline" : "arrow-down-outline"
+          }
+          size={16}
+          color="white"
+        />
+        <Text style={styles.balanceCardPercentage}>{card.percentage}</Text>
+      </View>
+    )}
   </View>
 );
 

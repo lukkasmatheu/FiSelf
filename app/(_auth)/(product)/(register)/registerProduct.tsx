@@ -6,30 +6,42 @@ import { BasicDetailsProduct } from "./steps/basicDetailsProduct";
 import { CategoryProduct } from "./steps/categoryProduct";
 import { AdvancedeDetailsProduct } from "./steps/advancedeDetailsProduct";
 
-import { Stack } from "expo-router";
+import { useRouter } from "expo-router";
 import { Logo } from "../../../../components/Logo";
 import { Button } from "../../../../components/Button";
+import { ProductSchema } from "../../../../schemas/ProductSchema";
+import useUser from "../../../../states/useUser";
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
+import api from "../../../../api/interceptors";
 
-export interface Product {
-  validadeData?: string;
+export type Product = {
+  validadeData?: Date;
   minQuantidade?: string;
-  codigoBarras?: string;
-  nome: string;
+  codigoBarras: string;
+  nomeProduto: string;
   precoVenda: string;
   precoCompra: string;
   categoria: string;
   imagem: string;
   quantidade: string;
-}
+  descricao: string;
+};
 
 const RegisterProduct = () => {
+  const userStore = useUser();
+  const router = useRouter();
   const [product, setProduct] = useState<Product>({
-    nome: "",
+    validadeData: undefined,
+    minQuantidade: undefined,
+    codigoBarras: "",
+    nomeProduto: "",
     precoVenda: "",
     precoCompra: "",
-    quantidade: "",
     categoria: "",
     imagem: "",
+    quantidade: "",
+    descricao: "",
   });
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -43,26 +55,33 @@ const RegisterProduct = () => {
   const handlePrev = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
+    } else {
+      router.back();
     }
   };
 
   const handleRegisterProduct = () => {
-    if (
-      product.nome === "" ||
-      product.precoVenda === "" ||
-      product.precoCompra === "" ||
-      product.categoria === "" ||
-      product.imagem === ""
-    ) {
-      Alert.alert("Erro", "Por favor, preencha todos os campos Obrigatorios *.");
-      return;
+    try {
+      const validatedProduct = ProductSchema.parse(product);
+      validatedProduct.idCompany = userStore.user?.idUser!;
+      validatedProduct.idProduct = uuidv4();
+      console.log(product);
+      api
+        .post("/v1/products", validatedProduct)
+        .then(() => {
+          Alert.alert("cadastrado com sucesso");
+          router.push("/(_auth)/(product)/products");
+        })
+        .catch((e) => Alert.alert("Error ao salvar produto" + e.message, e));
+    } catch (error: any) {
+      if (error.name === "ZodError") {
+        Alert.alert(
+          "Erro de Validação",
+          error.errors.map((e: any) => e.message).join("\n")
+        );
+      }
+      console.error(error);
     }
-
-    // Ação de cadastro (apenas exemplo)
-    Alert.alert(
-      "Produto Cadastrado",
-      `Nome: ${product.nome}\nPreço: R$ ${product.precoVenda}\nCategoria: ${product.categoria}`
-    );
   };
   const renderStep = () => {
     switch (currentStep) {
@@ -82,10 +101,6 @@ const RegisterProduct = () => {
   };
   return (
     <View style={styles.container}>
-      <Stack.Screen
-        options={{
-          headerShown: false
-        }}/>
       <Logo />
       <Text style={styles.title}>Cadastro de Produto</Text>
       <View style={styles.steps}>
@@ -108,18 +123,19 @@ const RegisterProduct = () => {
       {renderStep()}
       <View style={styles.navigation}>
         <Button
-          title="Anterior"
+          title={currentStep !== 0 ? "Anterior" : "Voltar"}
           onPress={handlePrev}
           disabled={currentStep === 0}
-          width={100}
-          color="#6C85ED"
+          width={150}
+          radius={5}
+          color="#0000003f"
         />
         <Button
           title={currentStep !== 2 ? "Proximo" : "Salvar"}
           onPress={currentStep !== 2 ? handleNext : handleRegisterProduct}
-          disabled={currentStep === 2}
-          width={100}
-          color="#6C85ED"
+          width={150}
+          radius={5}
+          color="#23cf5c"
         />
         {/* Por enquanto o botão segue desligado no ultimo step como não estou salvando a informaçao ainda */}
       </View>
@@ -149,10 +165,10 @@ const styles = StyleSheet.create({
   navigation: {
     position: "absolute",
     bottom: 15,
+    marginLeft: 15,
     width: "100%",
-    marginLeft:15,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   step: {
     padding: 10,
@@ -163,6 +179,5 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
-
 
 export default RegisterProduct;
