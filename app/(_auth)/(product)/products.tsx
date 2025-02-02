@@ -4,11 +4,11 @@ import { View, Text, ScrollView, Alert, RefreshControl, SafeAreaView } from "rea
 import { Logo } from "../../../components/Logo";
 import { CardStatics } from "../../../components/Card/cardStatic";
 import { Category, Product, formatProductsByCategory } from "../../../utils/parsers";
-import ProductModal from "./components/ProductModal";
-import CartModal from "./components/CartModal";
-import FloatingButton from "./components/FloatingButton";
+import {ProductModal} from "./components/ProductModal";
+import {CartModal} from "./components/CartModal";
+import {FloatingButton} from "./components/FloatingButton";
 import api from "../../../api/interceptors";
-import ProductCard from "./components/ProductCard";
+import {ProductCard} from "./components/ProductCard";
 
 const Products = () => {
   const [refreshing, setRefreshing] = useState(false);
@@ -19,11 +19,10 @@ const Products = () => {
   const [quantity, setQuantity] = useState(0);
   const [sale, setSale] = useState<{ product: Product; quantity: number }[]>([]);
 
-  const menus = [
-    { color: "#03db9a", label: "Novos Produtos", value: "17" },
-    { color: "#03db9a", label: "Total Produtos", value: "70" },
-    { color: "#7359ff", label: "Saída de Produtos", value: "13" },
-  ];
+  useEffect(() => {
+    getProducts();
+    return () => setProdutosData([]);
+  }, []);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -41,24 +40,26 @@ const Products = () => {
       .catch((e) => Alert.alert("Erro ao buscar produtos", e.message));
   };
 
-  useEffect(() => {
-    getProducts();
-    return () => setProdutosData([]);
-  }, []);
-
-  const handleProductPress = (product: Product) => {
-    setSelectedProduct(product);
-    setModalVisible(true);
-  };
-
   const onSale = () =>{
-    const saleRequest = sale.map((current) => ({'productId':current.product.id,quantity:quantity}))
+    const saleRequest = sale.map((current) => ({'productId':current.product.id,quantity:current.quantity}))
     api.post("/v1/products/sale",saleRequest)
-      .then((success) => {
+      .then(() => {
         Alert.alert("Venda registrada com sucesso.")
+        setModalVisibleSale(false)
+        setSale([])
       })
       .catch((e) => Alert.alert("Erro ao buscar produtos", e.message));
   }
+
+
+  const handleProductPress = (product: Product) => {
+    const existSale = sale.find((saleContent)=> saleContent.product.id === product.id)
+    if(existSale){
+      setQuantity(existSale.quantity)
+    }
+    setSelectedProduct(product);
+    setModalVisible(true);
+  };
 
   const closeModal = () => {
     setModalVisible(false);
@@ -72,7 +73,10 @@ const Products = () => {
       Alert.alert("Erro", "Produto ou quantidade inválidos.");
       return;
     }
-    setSale((prevSale) => [...prevSale, { product: selectedProduct, quantity }]);
+    setSale((prevSale) => {
+      const newSales = prevSale.filter((item) => item.product.id !== selectedProduct.id);
+      return [...newSales, { product: selectedProduct, quantity }];
+    });
     setQuantity(0);
     closeModal();
   };

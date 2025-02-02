@@ -28,9 +28,12 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   async (response) => {
     const { setAccessToken,accessToken } = useUser.getState();
-
-    const newAccessToken = response.headers["Bearer"];
-    console.log(response.headers)
+    let newAccessToken = null;
+    if(response.headers.authorization != null){
+      var possible = response.headers.authorization;
+      newAccessToken = possible.replace("Bearer ","");
+    }
+    
     if (newAccessToken != null && newAccessToken != accessToken) {
       console.log("Alterando token" + newAccessToken)
       setAccessToken(newAccessToken);

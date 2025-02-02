@@ -23,23 +23,14 @@ export default function _layout() {
           tabBarIcon: () => <Ionicons size={28} name={"bag-handle-outline"} />,
         }}
       />
-      <Tabs.Screen
-        name="(product)/productCreate"
+       <Tabs.Screen
+        name="(product)/(register)/registerProduct"
         options={{
           headerShown: false,
           title: "Cadastro",
           tabBarIcon: () => <Ionicons size={28} name={"bag-outline"} />,
         }}
       /> 
-      <Tabs.Screen
-        name="(product)/(register)"
-        options={{
-          href:null,
-          headerShown: false,
-          title: "Venda",
-          tabBarIcon: () => <Ionicons size={28} name={"bag-add-outline"} />,
-        }}
-      />
     </Tabs>
   );
 }

@@ -9,7 +9,7 @@ type CategoryCardProps = {
   onPress: (product: Product) => void;
 };
 
-const CategoryCard = ({ product, onPress }: CategoryCardProps) => {
+export const CategoryCard = ({ product, onPress }: CategoryCardProps) => {
   return (
     <TouchableOpacity style={styles.card} onPress={() => onPress(product)}>
       <Image source={{ uri: product.image }} style={styles.image} />
@@ -53,4 +53,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategoryCard;

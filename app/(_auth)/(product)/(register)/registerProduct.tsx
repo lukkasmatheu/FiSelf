@@ -14,6 +14,7 @@ import axios from "axios";
 import useUser from "../../../../states/useUser";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
+import api from "../../../../api/interceptors";
 
 export type Product = {
   validadeData?: Date;
@@ -55,8 +56,8 @@ const RegisterProduct = () => {
   const handlePrev = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
-    }else{
-      router.back()
+    } else {
+      router.back();
     }
   };
 
@@ -66,8 +67,8 @@ const RegisterProduct = () => {
       validatedProduct.idCompany = userStore.user?.idUser!;
       validatedProduct.idProduct = uuidv4();
       console.log(product);
-      axios
-        .post("http://10.0.2.2:8080/v1/products", validatedProduct)
+      api
+        .post("/v1/products", validatedProduct)
         .then(() => {
           Alert.alert("cadastrado com sucesso");
           router.push("/(_auth)/(product)/products");
@@ -101,11 +102,6 @@ const RegisterProduct = () => {
   };
   return (
     <View style={styles.container}>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-      />
       <Logo />
       <Text style={styles.title}>Cadastro de Produto</Text>
       <View style={styles.steps}>

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { useRouter } from "expo-router";
@@ -36,12 +36,10 @@ export default function Register() {
 
   const validateRegister = () => {
     try {
-      console.log(register)
       const parsed = UserSchema.parse(register);
-      console.log("Dados válidos:", parsed);
       axios.post('http://10.0.2.2:8080/v1/user', parsed)
-      .then(success=> console.log("Usuario Cadastrado com sucesso" + success))
-      .catch(error=> console.error("Error ao cadastrar novo usuario" + error.message, error));
+      .then(success=> Alert.alert("Usuario Cadastrado com sucesso" + success))
+      .catch((error)=> Alert.alert("Error ao cadastrar novo usuario. Tente novamente mais tarde"));
       router.push("/login");
     } catch (error: any) {
       if (error.name === "ZodError") {

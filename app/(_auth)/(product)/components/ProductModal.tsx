@@ -14,7 +14,7 @@ type ProductModalProps = {
   quantity: number;
 };
 
-const ProductModal = ({
+export const ProductModal = ({
   visible,
   selectedProduct,
   closeModal,
@@ -107,4 +107,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductModal;

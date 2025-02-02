@@ -7,9 +7,9 @@ type FloatingButtonProps = {
   onPress: () => void;
 };
 
-const FloatingButton = ({ onPress }: FloatingButtonProps) => (
+export const FloatingButton = ({ onPress }: FloatingButtonProps) => (
   <TouchableOpacity style={styles.floatingButton} onPress={onPress}>
-    <AntDesign name="shoppingcart" size={35} color="black" />
+    <AntDesign name="shoppingcart" size={35} style={{marginRight:5}} color="black" />
   </TouchableOpacity>
 );
 
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FloatingButton;
+
