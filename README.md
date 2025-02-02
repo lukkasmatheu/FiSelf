@@ -152,13 +152,13 @@ Serviço Prestado
 |Telas de cadastro de produto e dashboard (Feito)|Tela de produtos e registro de venda (Feito)|
 
 
-|Sprint 3| Sprint 4|
+|Sprint 3| Sprint 4| Sprint 5|
 |--|--|
-|Criação de backend (feito)|Integração com Backend/frontend (feito)|
-|Criar integração com firebase para login (feito)| Adicionar Axios para relização de chamadas (feito)|
-|Criar conexao com firestore| Adicionar zustand para persistencia local de dados (feito)|
-|Mapear Objetos a serem persistidos(Produtos/Vendas/clientes) (feito)|Criar Logica de acesso para rotas autenticadas (feito)|
-|Possivel Tarefa -> Deploy de backend no Render ou ec2-aws (o backend esta sendo utilizado localemnte por enquanto)| Possivel tarefa -> Criar conexão sse para notificações (vencimento de produto/registro de vendas) (Replanejado)|
+|Criação de backend (feito)|Integração com Backend/frontend (feito)| Refatorar telas junto a integração ao backend (Feito)|
+|Criar integração com firebase para login (feito)| Adicionar Axios para relização de chamadas (feito)| Manter Token ativo (sem necessidade de ficar refazendo login) (Feito)|
+|Criar conexao com firestore| Adicionar zustand para persistencia local de dados (feito)| |
+|Mapear Objetos a serem persistidos(Produtos/Vendas/clientes) (feito)|Criar Logica de acesso para rotas autenticadas (feito)||
+|Possivel Tarefa -> Deploy de backend no Render ou ec2-aws (o backend esta sendo utilizado localemnte por enquanto)| Possivel tarefa -> Criar conexão sse para notificações (vencimento de produto/registro de vendas) (Replanejado)||
 
 ## Como executar 
 
