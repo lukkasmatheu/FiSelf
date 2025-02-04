@@ -40,9 +40,9 @@ export const ProductSchema = z
     category: data.categoria,
     productName: data.nomeProduto,
     description: data.descricao,
-    cost: parseFloat(data.precoCompra.replace(/\D/g, "")),
+    cost: parseFloat(data.precoVenda.replace(/\D/g, "")),
     image: data.imagem ?? "",
-    salePrice: parseFloat(data.precoVenda.replace(/\D/g, "")),
+    salePrice: parseFloat(data.precoCompra.replace(/\D/g, "")),
     expirationDate: data.validadeData
       ? data.validadeData.toISOString().split("T")[0]
       : null,
