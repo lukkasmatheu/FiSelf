@@ -88,7 +88,7 @@ export const formatProductsByCategory = (products: Product[]): Category[] => {
 export const transformFinancialData = (
   record: FinancialRecord
 ): DashboardData => {
-  const totalCostPercentage = (record.totalCost / record.totalBalance) * 100;
+  const totalCostPercentage = (record.totalCost /(record.totalCost + record.totalSale)) * 100;
 
   return {
     totalBalance: {

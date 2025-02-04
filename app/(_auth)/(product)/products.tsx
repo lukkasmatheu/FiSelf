@@ -2,7 +2,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, ScrollView, Alert, RefreshControl, SafeAreaView } from "react-native";
 import { Logo } from "../../../components/Logo";
-import { CardStatics } from "../../../components/Card/cardStatic";
 import { Category, Product, formatProductsByCategory } from "../../../utils/parsers";
 import {ProductModal} from "./components/ProductModal";
 import {CartModal} from "./components/CartModal";
@@ -95,7 +94,7 @@ const Products = () => {
   return (
     <View style={{ flex: 1, backgroundColor:"#FFF" }}>
       <Logo />
-      <Text style={{ fontSize: 25 }}>Produtos em Estoque</Text>
+      <Text style={{ fontSize: 25,textAlign:"center" }}>Produtos em Estoque</Text>
       <ScrollView
         style={{ flex: 1 ,padding:16}}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
@@ -111,7 +110,7 @@ const Products = () => {
         quantity={quantity}
       />
       <CartModal visible={modalVisibleSale} sale={sale} onSale={onSale} closeModal={closeModalSale} />
-      <FloatingButton onPress={() => setModalVisibleSale(true)} />
+     {sale.length > 0 && <FloatingButton onPress={() => setModalVisibleSale(true)} />}
     </View>
   );
 };
