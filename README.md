@@ -61,7 +61,7 @@ Produto
 }
 
 ```
-Venda
+Operacao-financeira
 ```json
 {
   "id_venda": "string",

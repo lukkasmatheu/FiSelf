@@ -38,6 +38,7 @@ export default function Register() {
     try {
       const parsed = UserSchema.parse(register);
       axios.post('http://10.0.2.2:8080/v1/user', parsed)
+
       .then(success=> Alert.alert("Usuario Cadastrado com sucesso"))
       .catch((error)=> {
          if (error.response.status === 409) {

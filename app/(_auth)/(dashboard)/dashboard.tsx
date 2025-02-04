@@ -18,6 +18,7 @@ import { Transactions } from "./components/transactions";
 
 import { DashboardData, transformFinancialData } from "../../../utils/parsers";
 import api from "../../../api/interceptors";
+
 import { FloatingButton } from "./components/FloatingButton";
 import { ConfigModal } from "./components/configModal";
 
@@ -92,6 +93,11 @@ export default function Dashboard() {
         visible={showModal}
         closeModal={() => setShowModal(!showModal)}
       />
+    </View>
+  ) : (
+    <View style={styles.loadingContainer}>
+      <ActivityIndicator size="large" />
+      <Text>Carregando</Text>
     </View>
   );
 }
