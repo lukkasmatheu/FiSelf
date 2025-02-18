@@ -17,10 +17,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/fiselfico.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.FiSelf"
+      "package": "com.anonymous.FiSelf",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -28,6 +29,20 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "b600912f-aabb-467b-b89a-6c24379698ca"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/b600912f-aabb-467b-b89a-6c24379698ca"
+    }
   }
 }

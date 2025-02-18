@@ -7,8 +7,8 @@ import { useState } from "react";
 
 import { UserSchema } from "../../schemas/UserSchema";
 import DatePickerField from "../../components/DatePicker";
-import axios from "axios";
 import moment from "moment";
+import api from "../../api/interceptors";
 
 export default function Register() {
   const router = useRouter();
@@ -37,7 +37,7 @@ export default function Register() {
   const validateRegister = () => {
     try {
       const parsed = UserSchema.parse(register);
-      axios.post('http://10.0.2.2:8080/v1/user', parsed)
+      api.post('/v1/user', parsed)
       .then(success=> Alert.alert("Usuario Cadastrado com sucesso"))
       .catch((error)=> {
          if (error.response.status === 409) {

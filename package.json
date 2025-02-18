@@ -32,7 +32,8 @@
     "uuid": "^11.0.5",
     "zod": "^3.24.1",
     "zustand": "^5.0.1",
-    "zustand-persist": "^0.4.0"
+    "zustand-persist": "^0.4.0",
+    "expo-updates": "~0.26.18"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
