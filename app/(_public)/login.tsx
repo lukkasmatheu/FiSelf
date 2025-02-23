@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import useUser from "../../states/useUser";
 
 import api from "../../api/interceptors";
+import { Toast } from "toastify-react-native";
 
 export default function Login() {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function Login() {
         userStore.setUser(userData);
         navigate("(_auth)/dashboard")
       })
-      .catch(erro => console.error("Erro ao realizar o Login.",erro))
+      .catch(erro => Toast.error("Ocorreu um erro ao realizar o login, tente novamente mais tarde"))
     }catch (except : any) {
       if (except.name === "ZodError") {
         const errorMap: { email?: string; senha?: string } = {};

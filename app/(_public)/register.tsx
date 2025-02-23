@@ -9,6 +9,7 @@ import { UserSchema } from "../../schemas/UserSchema";
 import DatePickerField from "../../components/DatePicker";
 import moment from "moment";
 import api from "../../api/interceptors";
+import { Toast } from "toastify-react-native";
 
 export default function Register() {
   const router = useRouter();
@@ -38,12 +39,12 @@ export default function Register() {
     try {
       const parsed = UserSchema.parse(register);
       api.post('/v1/user', parsed)
-      .then(success=> Alert.alert("Usuario Cadastrado com sucesso"))
+      .then(success=> Toast.success("Usuario Cadastrado com sucesso"))
       .catch((error)=> {
          if (error.response.status === 409) {
-                  Alert.alert("Usuario com email ja cadastrado. Tente realizar o login");
+                  Toast.error("Usuario com email ja cadastrado. Tente realizar o login");
           }else{
-            Alert.alert("Error ao cadastrar novo usuario. Tente novamente mais tarde")
+            Toast.error("Error ao cadastrar novo usuario. Tente novamente mais tarde")
           }
       });
       router.push("/login");

@@ -1,13 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useCallback, useEffect, useState } from "react";
 import {
-  Alert,
   StyleSheet,
   View,
   Text,
   ActivityIndicator,
-  ScrollView,
-  RefreshControl,
   TouchableOpacity,
 } from "react-native";
 import { Logo } from "../../../components/Logo";
@@ -20,6 +17,7 @@ import { DashboardData, transformFinancialData } from "../../../utils/parsers";
 import api from "../../../api/interceptors";
 import { FloatingButton } from "./components/FloatingButton";
 import { ConfigModal } from "./components/configModal";
+import ToastManager, { Toast } from "toastify-react-native";
 
 export default function Dashboard() {
   const [dashboard, setDashboard] = useState<DashboardData | null>(null);
@@ -40,10 +38,11 @@ export default function Dashboard() {
       .then((response) => {
         const transformedData = transformFinancialData(response.data);
         setDashboard(transformedData);
+        Toast.success("Sucesso ao realizar a busca de registros");
       })
       .catch((error) => {
         if (error.response.status === 404) {
-          Alert.alert("Não foram encontrados nenhum registro.");
+          Toast.warn("Não foram encontrados nenhum registro.");
         }
       })
       .finally(() => {
@@ -51,15 +50,19 @@ export default function Dashboard() {
       });
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    updateDashboard();
+  }, []);
 
   return loading ? (
     <View style={styles.loadingContainer}>
+      <ToastManager height={90} width={260} style={styles.toast}/>
       <ActivityIndicator size="large" />
       <Text>Carregando</Text>
     </View>
   ) : (
     <View style={styles.container}>
+      <ToastManager height={90} width={260} style={styles.toast}/>
       {!showModal && (
         <FloatingButton onPress={() => setShowModal(!showModal)} />
       )}
@@ -107,5 +110,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     justifyContent: "center",
     alignItems: "center",
+  },
+  toast: {
+    position: "absolute",
+    top:75,
+    right: 0,
+    zIndex:999
   },
 });
