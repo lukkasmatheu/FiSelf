@@ -98,11 +98,6 @@ export default function Dashboard() {
         closeModal={() => setShowModal(!showModal)}
       />
     </View>
-  ) : (
-    <View style={styles.loadingContainer}>
-      <ActivityIndicator size="large" />
-      <Text>Carregando</Text>
-    </View>
   );
 }
 

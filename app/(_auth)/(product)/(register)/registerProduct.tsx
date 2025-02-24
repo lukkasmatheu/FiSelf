@@ -47,9 +47,6 @@ const RegisterProduct = () => {
   const userStore = useUser();
   const router = useRouter();
   const [product, setProduct] = useState<Product>(defaultState);
-
-  });
-
   const [currentStep, setCurrentStep] = useState(0);
 
   const handleNext = () => {

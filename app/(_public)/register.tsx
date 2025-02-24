@@ -160,9 +160,6 @@ const styles = StyleSheet.create({
   scrollStyle: {
     flex: 1,
   },
-  scrollStyle: {
-    flex: 1,
-  },
   inputs: {
     flexDirection: "column",
     alignItems: "center",
