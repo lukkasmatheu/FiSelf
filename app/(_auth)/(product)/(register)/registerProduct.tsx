@@ -14,7 +14,9 @@ import useUser from "../../../../states/useUser";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import api from "../../../../api/interceptors";
+
 import ToastManager, { Toast } from "toastify-react-native";
+
 
 export type Product = {
   validadeData?: Date;
@@ -46,6 +48,8 @@ const RegisterProduct = () => {
   const router = useRouter();
   const [product, setProduct] = useState<Product>(defaultState);
 
+  });
+
   const [currentStep, setCurrentStep] = useState(0);
 
   const handleNext = () => {
@@ -67,6 +71,7 @@ const RegisterProduct = () => {
       const validatedProduct = ProductSchema.parse(product);
       validatedProduct.idCompany = userStore.user?.idUser!;
       validatedProduct.idProduct = uuidv4();
+
       api
         .post("/v1/products", validatedProduct)
         .then(() => {

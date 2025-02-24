@@ -12,6 +12,7 @@ import api from "../../api/interceptors";
 import ToastManager, { Toast } from "toastify-react-native";
 import { Logo } from "../../components/Logo";
 
+
 export default function Register() {
   const router = useRouter();
   const [register, setRegister] = useState({
@@ -155,6 +156,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
+
+  scrollStyle: {
+    flex: 1,
+  },
   scrollStyle: {
     flex: 1,
   },
@@ -180,6 +185,5 @@ const styles = StyleSheet.create({
     top:75,
     right: 0,
     zIndex:999
-  },
-  
+  }
 });

@@ -15,6 +15,7 @@ import { Transactions } from "./components/transactions";
 
 import { DashboardData, transformFinancialData } from "../../../utils/parsers";
 import api from "../../../api/interceptors";
+
 import { FloatingButton } from "./components/FloatingButton";
 import { ConfigModal } from "./components/configModal";
 import ToastManager, { Toast } from "toastify-react-native";
@@ -38,6 +39,7 @@ export default function Dashboard() {
       .then((response) => {
         const transformedData = transformFinancialData(response.data);
         setDashboard(transformedData);
+
         Toast.success("Sucesso ao realizar a busca de registros");
       })
       .catch((error) => {
@@ -95,6 +97,11 @@ export default function Dashboard() {
         visible={showModal}
         closeModal={() => setShowModal(!showModal)}
       />
+    </View>
+  ) : (
+    <View style={styles.loadingContainer}>
+      <ActivityIndicator size="large" />
+      <Text>Carregando</Text>
     </View>
   );
 }

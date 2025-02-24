@@ -89,7 +89,6 @@ export const transformFinancialData = (
   record: FinancialRecord
 ): DashboardData => {
   const totalCostPercentage = (record.totalCost /(record.totalCost + record.totalSale)) * 100;
-
   return {
     totalBalance: {
       amount: formatToBRL(record.totalBalance) || "R$ 00.00",

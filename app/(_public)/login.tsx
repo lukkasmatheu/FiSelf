@@ -7,8 +7,10 @@ import { useEffect, useState } from "react";
 import useUser from "../../states/useUser";
 
 import api from "../../api/interceptors";
+
 import ToastManager, { Toast } from "toastify-react-native";
 import { Logo } from "../../components/Logo";
+
 
 export default function Login() {
   const router = useRouter();
@@ -107,6 +109,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 4,
   },
+
   toast: {
     position: "absolute",
     top:75,
