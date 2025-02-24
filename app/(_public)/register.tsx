@@ -40,15 +40,18 @@ export default function Register() {
     try {
       const parsed = UserSchema.parse(register);
       api.post('/v1/user', parsed)
-      .then(() => Toast.success("Usuario Cadastrado com sucesso"))
+      .then(() => {
+          Toast.success("Usuario Cadastrado com sucesso");
+          router.push("/login");
+        })
       .catch((error)=> {
+        console.log(error.message)
          if (error.response.status === 409) {
                   Toast.error("Usuario com email ja cadastrado. Tente realizar o login");
           }else{
             Toast.error("Error ao cadastrar novo usuario. Tente novamente mais tarde")
           }
       });
-      router.push("/login");
     } catch (error: any) {
       if (error.name === "ZodError") {
         const errorMap: typeof errors = {};
