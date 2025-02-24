@@ -16,21 +16,22 @@
       "supportsTablet": true
     },
     "android": {
+      "permissions": ["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/fiselfico.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.FiSelf",
+      "package": "com.Fiself.FiSelf",
       "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "plugins":[["expo-build-properties", { "android": { "usesCleartextTraffic": true } } ],"expo-router"],
+    "plugins":[["expo-build-properties", { "android": { "usesCleartextTraffic": true ,"requestLegacyExternalStorage" : true } } ],"expo-router"],
     "extra": {
       "router": {
-        "origin": false
+        "origin": true
       },
       "eas": {
         "projectId": "b600912f-aabb-467b-b89a-6c24379698ca"
