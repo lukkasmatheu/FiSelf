@@ -27,16 +27,7 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "plugins": [
-      "expo-build-properties", 
-      {
-        "android": 
-        {
-          "usesCleartextTraffic": true
-        }
-      },
-      "expo-router"
-    ],
+    "plugins":[["expo-build-properties", { "android": { "usesCleartextTraffic": true } } ],"expo-router"],
     "extra": {
       "router": {
         "origin": false
