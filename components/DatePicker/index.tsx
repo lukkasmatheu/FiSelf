@@ -22,6 +22,8 @@ export default function DatePickerField({title, date, setDate, placeHolder, minD
         <Text style={styles.title}>{title}</Text>
         <DatePicker
           modal
+          confirmText="Confirmar"
+          cancelText="Voltar"
           open={isDatePickerVisible}
           date={date || maxDate || new Date()} 
           onConfirm={(date: Date) => {

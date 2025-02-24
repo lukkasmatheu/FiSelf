@@ -7,8 +7,11 @@ import { useState } from "react";
 
 import { UserSchema } from "../../schemas/UserSchema";
 import DatePickerField from "../../components/DatePicker";
-import axios from "axios";
 import moment from "moment";
+import api from "../../api/interceptors";
+import ToastManager, { Toast } from "toastify-react-native";
+import { Logo } from "../../components/Logo";
+
 
 export default function Register() {
   const router = useRouter();
@@ -37,17 +40,19 @@ export default function Register() {
   const validateRegister = () => {
     try {
       const parsed = UserSchema.parse(register);
-      axios.post('http://10.0.2.2:8080/v1/user', parsed)
-
-      .then(success=> Alert.alert("Usuario Cadastrado com sucesso"))
+      api.post('/v1/user', parsed)
+      .then(() => {
+          Toast.success("Usuario Cadastrado com sucesso");
+          router.push("/login");
+        })
       .catch((error)=> {
+        console.log(error.message)
          if (error.response.status === 409) {
-                  Alert.alert("Usuario com email ja cadastrado. Tente realizar o login");
+                  Toast.error("Usuario com email ja cadastrado. Tente realizar o login");
           }else{
-            Alert.alert("Error ao cadastrar novo usuario. Tente novamente mais tarde")
+            Toast.error("Error ao cadastrar novo usuario. Tente novamente mais tarde")
           }
       });
-      router.push("/login");
     } catch (error: any) {
       if (error.name === "ZodError") {
         const errorMap: typeof errors = {};
@@ -62,10 +67,8 @@ export default function Register() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.logo}>
-        <Text style={styles.firtText}>Fi</Text>
-        <Text style={styles.secondText}>Self</Text>
-      </View>
+      <ToastManager height={90} width={260} style={styles.toast}/>
+      <Logo/>
       <ScrollView style={styles.scrollStyle}>
         <View style={styles.inputs}>
           <Input
@@ -153,13 +156,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
-  logo: {
-    marginTop: 30,
-    marginBottom: 10,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+
+  scrollStyle: {
+    flex: 1,
   },
   scrollStyle: {
     flex: 1,
@@ -176,17 +175,15 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
   },
-  firtText: {
-    fontSize: 40,
-    color: "blue",
-  },
-  secondText: {
-    fontSize: 40,
-    fontWeight: "bold",
-  },
   errorText: {
     color: "red",
     fontSize: 14,
     marginTop: 4,
   },
+  toast: {
+    position: "absolute",
+    top:75,
+    right: 0,
+    zIndex:999
+  }
 });

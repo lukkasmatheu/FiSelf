@@ -15,6 +15,9 @@ import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import api from "../../../../api/interceptors";
 
+import ToastManager, { Toast } from "toastify-react-native";
+
+
 export type Product = {
   validadeData?: Date;
   minQuantidade?: string;
@@ -29,9 +32,7 @@ export type Product = {
 };
 
 const RegisterProduct = () => {
-  const userStore = useUser();
-  const router = useRouter();
-  const [product, setProduct] = useState<Product>({
+  const defaultState = {
     validadeData: undefined,
     minQuantidade: undefined,
     codigoBarras: "",
@@ -42,6 +43,11 @@ const RegisterProduct = () => {
     imagem: "",
     quantidade: "",
     descricao: "",
+  }
+  const userStore = useUser();
+  const router = useRouter();
+  const [product, setProduct] = useState<Product>(defaultState);
+
   });
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -65,14 +71,15 @@ const RegisterProduct = () => {
       const validatedProduct = ProductSchema.parse(product);
       validatedProduct.idCompany = userStore.user?.idUser!;
       validatedProduct.idProduct = uuidv4();
-      console.log(product);
+
       api
         .post("/v1/products", validatedProduct)
         .then(() => {
-          Alert.alert("cadastrado com sucesso");
+          Toast.success("cadastrado com sucesso");
+          setProduct(defaultState);
           router.push("/(_auth)/(product)/products");
         })
-        .catch((e) => Alert.alert("Error ao salvar produto" + e.message, e));
+        .catch((e) => Toast.error("Error ao salvar produto" + e.message));
     } catch (error: any) {
       if (error.name === "ZodError") {
         Alert.alert(
@@ -80,7 +87,6 @@ const RegisterProduct = () => {
           error.errors.map((e: any) => e.message).join("\n")
         );
       }
-      console.error(error);
     }
   };
   const renderStep = () => {
@@ -102,6 +108,7 @@ const RegisterProduct = () => {
   return (
     <View style={styles.container}>
       <Logo />
+      <ToastManager height={90} width={260} style={styles.toast}/>
       <Text style={styles.title}>Cadastro de Produto</Text>
       <View style={styles.steps}>
         {[1, 2, 3].map((step, index) => (
@@ -177,6 +184,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
+  },
+  toast: {
+    position: "absolute",
+    top:75,
+    right: 0,
+    zIndex:999
   },
 });
 
