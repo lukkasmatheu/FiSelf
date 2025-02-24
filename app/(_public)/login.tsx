@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import useUser from "../../states/useUser";
 
 import api from "../../api/interceptors";
-import { Toast } from "toastify-react-native";
+import ToastManager, { Toast } from "toastify-react-native";
+import { Logo } from "../../components/Logo";
 
 export default function Login() {
   const router = useRouter();
@@ -48,10 +49,8 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.logo}>
-        <Text style={styles.firtText}>Fi</Text>
-        <Text style={styles.secondText}>Self</Text>
-      </View>
+      <ToastManager height={90} width={260} style={styles.toast}/>
+      <Logo />
       <View style={styles.inputs}>
         <Input label="Email"
          textContentType={"emailAddress"}
@@ -90,14 +89,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
-  logo: {
-    marginTop: 50,
-    marginBottom: 80,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   inputs: {
     width: "100%",
     height: 200,
@@ -111,19 +102,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  firtText: {
-    // fontFamily:'sans serif',
-    fontSize: 40,
-    color: "blue",
-  },
-  secondText: {
-    // fontFamily:'sans serif',
-    fontSize: 40,
-    fontWeight: "bold",
-  },
   errorText: {
     color: "red",
     fontSize: 14,
     marginTop: 4,
   },
+  toast: {
+    position: "absolute",
+    top:75,
+    right: 0,
+    zIndex:999
+  }
 });
