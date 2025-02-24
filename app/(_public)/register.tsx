@@ -9,7 +9,8 @@ import { UserSchema } from "../../schemas/UserSchema";
 import DatePickerField from "../../components/DatePicker";
 import moment from "moment";
 import api from "../../api/interceptors";
-import { Toast } from "toastify-react-native";
+import ToastManager, { Toast } from "toastify-react-native";
+import { Logo } from "../../components/Logo";
 
 export default function Register() {
   const router = useRouter();
@@ -39,7 +40,7 @@ export default function Register() {
     try {
       const parsed = UserSchema.parse(register);
       api.post('/v1/user', parsed)
-      .then(success=> Toast.success("Usuario Cadastrado com sucesso"))
+      .then(() => Toast.success("Usuario Cadastrado com sucesso"))
       .catch((error)=> {
          if (error.response.status === 409) {
                   Toast.error("Usuario com email ja cadastrado. Tente realizar o login");
@@ -62,10 +63,8 @@ export default function Register() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.logo}>
-        <Text style={styles.firtText}>Fi</Text>
-        <Text style={styles.secondText}>Self</Text>
-      </View>
+      <ToastManager height={90} width={260} style={styles.toast}/>
+      <Logo/>
       <ScrollView style={styles.scrollStyle}>
         <View style={styles.inputs}>
           <Input
@@ -153,14 +152,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
-  logo: {
-    marginTop: 30,
-    marginBottom: 10,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   scrollStyle: {
     flex: 1,
   },
@@ -176,17 +167,16 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
   },
-  firtText: {
-    fontSize: 40,
-    color: "blue",
-  },
-  secondText: {
-    fontSize: 40,
-    fontWeight: "bold",
-  },
   errorText: {
     color: "red",
     fontSize: 14,
     marginTop: 4,
   },
+  toast: {
+    position: "absolute",
+    top:75,
+    right: 0,
+    zIndex:999
+  },
+  
 });
